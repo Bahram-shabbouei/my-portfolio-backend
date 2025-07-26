@@ -1,8 +1,13 @@
-
+// src/database.ts (KORRIGIERTE VERSION)
 
 import sqlite3 from 'sqlite3';
-import path from 'path';
+import path, { dirname } from 'path'; // Füge 'dirname' zum Import hinzu
+import { fileURLToPath } from 'url';   // Füge diesen Import hinzu
 
+// === Moderne Methode, um __dirname in ES Modules zu erhalten ===
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+// =============================================================
 
 // Wähle den ausführlichen Modus für bessere Fehlermeldungen
 const sqlite = sqlite3.verbose();
@@ -20,6 +25,7 @@ export const db = new sqlite.Database(dbPath, (err) => {
 
 // Funktion zum Initialisieren der Datenbank (Tabelle erstellen)
 export const initializeDb = () => {
+  console.log("Versuche, die Datenbank zu initialisieren...");
   db.serialize(() => {
     db.run(`
       CREATE TABLE IF NOT EXISTS messages (

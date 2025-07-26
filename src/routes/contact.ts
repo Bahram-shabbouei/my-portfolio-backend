@@ -1,7 +1,7 @@
 // src/routes/contact.ts (VOLLSTÄNDIGER UND KORRIGIERTER INHALT)
 
 import { Router, Request, Response } from 'express';
-import { db } from '../database';
+import { db } from '../database.js';
 
 const router = Router();
 

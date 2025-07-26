@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "commonjs", // Wichtig für Node.js mit Express
+    "module": "NodeNext", 
+    "moduleResolution": "NodeNext",// Wichtig für Node.js mit Express
     "outDir": "./dist",   // Kompilierter JavaScript-Code landet hier
     "rootDir": "./src",   // Unser TypeScript-Quellcode ist hier
     "strict": true,
