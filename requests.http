@@ -1,0 +1,57 @@
+### requests.http
+### Eine Sammlung von API-Anfragen zum Testen des Portfolio-Backends.
+### Benötigt die "REST Client" Erweiterung in VS Code.
+
+# Trennzeichen für Anfragen
+###
+
+# ==================================================================
+# Test 1: Health-Check
+# Überprüft, ob der Server online ist und korrekt antwortet.
+# Erwartete Antwort: Status 200 OK, { "status": "UP" }
+# ==================================================================
+GET http://localhost:3001/api/health
+
+###
+
+# ==================================================================
+# Test 2: Gültige Kontaktanfrage senden
+# Simuliert das erfolgreiche Absenden des vollständigen Kontaktformulars.
+# Erwartete Antwort: Status 201 Created, Erfolgs-JSON, neue Nachricht in der DB.
+# ==================================================================
+POST http://localhost:3001/api/contact
+Content-Type: application/json
+
+{
+  "name": "Maria Musterfrau (Test)",
+  "email": "maria.musterfrau@example.com",
+  "message": "Dies ist eine Testnachricht über die API. Ich interessiere mich für eine Zusammenarbeit.",
+  "phone": "+491234567890",
+  "address": "Testallee 123, 10115 Berlin"
+}
+
+###
+
+# ==================================================================
+# Test 3: Ungültige Kontaktanfrage senden
+# Überprüft die serverseitige Validierung (hier fehlt die "message").
+# Erwartete Antwort: Status 400 Bad Request, Fehler-JSON.
+# ==================================================================
+POST http://localhost:3001/api/contact
+Content-Type: application/json
+
+{
+  "name": "Fehlerhafter User",
+  "email": "fehler@example.com"
+}
+
+###
+
+# ==================================================================
+# Test 4: E-Mail-Versand testen
+# Ruft den separaten Test-Endpunkt auf, um zu prüfen, ob die Nodemailer-
+# und Mailtrap-Konfiguration korrekt ist.
+# Erwartete Antwort: Status 200 OK, Text "Test-E-Mail wurde versendet.",
+# neue E-Mail in der Mailtrap-Inbox.
+# ==================================================================
+GET http://localhost:3001/api/test-email

@@ -1,0 +1,77 @@
+# Mein Portfolio - Backend
+
+Dies ist der Backend-Service für meine persönliche Portfolio-Webseite. Er wurde mit Node.js, Express und TypeScript entwickelt und ist für die Verarbeitung von API-Anfragen zuständig.
+
+**Zugehöriges Frontend-Repository:** [my-portfolio-website](https://github.com/Bahram-shabbouei/my-portfolio-website)
+
+---
+
+## Übersicht
+
+Dieser Server stellt eine REST-API bereit, die vom Frontend genutzt wird. Die Hauptfunktionalität ist die Verarbeitung von Kontaktanfragen.
+
+### Features
+
+-   **REST-API:** Ein `/api/contact`-Endpunkt zum Empfangen von Formulardaten.
+-   **Datenpersistenz:** Speichert alle eingehenden Nachrichten in einer SQLite-Datenbank.
+-   **E-Mail-Automatisierung:**
+    -   Sendet eine automatische Bestätigungs-E-Mail an den Benutzer.
+    -   Sendet eine Benachrichtigungs-E-Mail an den Administrator (mich).
+-   **Serverseitige Validierung:** Stellt sicher, dass nur gültige Daten verarbeitet werden.
+
+### Technologie-Stack
+
+-   **Laufzeitumgebung:** Node.js
+-   **Framework:** Express.js
+-   **Sprache:** TypeScript
+-   **Datenbank:** SQLite3
+-   **E-Mail-Versand:** Nodemailer
+-   **Entwicklung:** Nodemon für automatischen Neustart, `ts-node` für die TypeScript-Ausführung
+
+---
+
+## Lokales Setup
+
+### Voraussetzungen
+
+-   Node.js (LTS-Version, z.B. 20.x)
+-   `pnpm` Paketmanager (`npm install -g pnpm`)
+
+### Installation & Start
+
+1.  **Repository klonen:**
+    ```bash
+    git clone https://github.com/Bahram-shabbouei/my-portfolio-backend.git
+    cd my-portfolio-backend
+    ```
+2.  **Abhängigkeiten installieren:**
+    ```bash
+    pnpm install
+    ```
+3.  **Umgebungsvariablen einrichten:**
+    -   Erstelle eine `.env`-Datei im Stammverzeichnis.
+    -   Kopiere den Inhalt aus `.env.example` (siehe unten) und fülle die Werte aus.
+4.  **Entwicklungsserver starten:**
+    ```bash
+    pnpm run dev
+    ```
+    Der Server ist unter `http://localhost:3001` erreichbar.
+
+---
+
+## Umgebungsvariablen (`.env`)
+
+Für den Betrieb des Servers wird eine `.env`-Datei benötigt. Erstelle eine Kopie von `.env.example` und passe die Werte an.
+
+```env
+# Port, auf dem der Server läuft
+PORT=3001
+
+# URL des Frontends für die CORS-Konfiguration
+FRONTEND_URL=http://localhost:5173
+
+# SMTP-Zugangsdaten für den E-Mail-Versand (z.B. von Mailtrap)
+SMTP_HOST=sandbox.smtp.mailtrap.io
+SMTP_PORT=2525
+SMTP_USER=dein_mailtrap_user
+SMTP_PASS=dein_mailtrap_passwort

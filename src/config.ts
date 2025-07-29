@@ -10,4 +10,11 @@ export const config = {
   
   // Nutze die Frontend-URL aus .env, ODER falle zurück auf die Standard-Dev-URL
   frontendUrl: process.env.FRONTEND_URL || 'http://localhost:5173',
+
+  smtp: {
+    host: process.env.SMTP_HOST || '',
+    port: process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : 2525,
+    user: process.env.SMTP_USER || '',
+    pass: process.env.SMTP_PASS || '',
+  }
 };
